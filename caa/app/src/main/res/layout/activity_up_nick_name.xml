@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--标题 完善广告信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#f66329"
+        android:orientation="horizontal"
+        android:layout_height="108px">
+
+        <LinearLayout
+            android:id="@+id/right_return"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="10px"
+                android:background="@mipmap/register_back2x"
+                android:layout_width="46px"
+                android:layout_height="30px" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="修改昵称"
+            android:textColor="#ffffff"
+            android:textSize="40px"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="90px"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="完成"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"
+                android:textSize="32px"
+                android:id="@+id/complete" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="24px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="24px"
+            android:layout_marginRight="24px"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="60px"
+                android:background="@null"
+                android:singleLine="true"
+                android:textColorHint="#D2D2D2"
+                android:textSize="36px" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#f66329" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="好名字可以让你的朋友更容易记住你"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

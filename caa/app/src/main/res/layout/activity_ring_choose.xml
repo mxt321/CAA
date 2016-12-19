@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <!--标题 完善广告信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:background="#f66329"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/forget_right_return"
+            android:layout_width="wrap_content"
+            android:layout_height="108px"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="46px"
+                android:layout_height="30px"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40px"
+                android:background="@mipmap/register_back2x" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="商圈选择"
+            android:textColor="#ffffff"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+            <!--最近选择城市 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最近选择城市"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_select_city"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape1"
+                    android:text="北京"
+                    android:textColor="@color/colorGree"
+                    android:textSize="14sp"
+                    android:layout_width="230px"
+                    android:layout_height="74px" />
+
+            </LinearLayout>
+
+            <!--热门城市 -->
+            <LinearLayout
+                android:id="@+id/ll_hot_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="热门城市"
+                    android:textSize="16sp" />
+
+                <GridView
+                    android:id="@+id/hot_city_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:columnWidth="8dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3" />
+            </LinearLayout>
+            <!--热门城区 -->
+            <LinearLayout
+                android:id="@+id/ll_hot_districts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门城区"
+                    android:textSize="16sp" />
+
+                <GridView
+                    android:id="@+id/hot_districts_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:columnWidth="8dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3" />
+            </LinearLayout>
+            <!--商圈 -->
+            <LinearLayout
+                android:id="@+id/ll_hot_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商圈"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <GridView
+                        android:id="@+id/hot_area_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:columnWidth="8dp"
+                        android:horizontalSpacing="5dp"
+                        android:numColumns="3" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
