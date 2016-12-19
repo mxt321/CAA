@@ -43,7 +43,7 @@
                 android:layout_height="120px"
                 android:layout_gravity="center"
                 android:layout_marginTop="100px"
-                android:src="@mipmap/wo_upload_headphoto2x" />
+                android:src="@mipmap/wo_upload_headphoto" />
 
             <TextView
                 android:id="@+id/tv_nickname"
@@ -110,7 +110,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="24px"
-                android:background="@mipmap/wo_more2x" />
+                android:background="@mipmap/wo_more" />
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <Spinner
@@ -141,7 +141,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="24px"
-                android:background="@mipmap/wo_more2x" />
+                android:background="@mipmap/wo_more" />
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <Spinner
@@ -172,7 +172,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="24px"
-                android:background="@mipmap/wo_more2x" />
+                android:background="@mipmap/wo_more" />
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <Spinner

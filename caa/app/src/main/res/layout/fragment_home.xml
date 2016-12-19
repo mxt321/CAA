@@ -21,7 +21,7 @@
                 android:id="@+id/imgbtn_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@mipmap/pub_loading_pic2x" />
+                android:background="@mipmap/pub_loading_pic" />
 
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -42,7 +42,7 @@
             <ImageView
                 android:layout_width="70px"
                 android:layout_height="60px"
-                android:background="@mipmap/home_advertising2x" />
+                android:background="@mipmap/home_advertising" />
 
             <TextView
                 android:layout_width="wrap_content"

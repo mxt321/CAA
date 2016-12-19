@@ -24,7 +24,7 @@
                 android:layout_height="30px"
                 android:layout_gravity="center"
                 android:layout_marginLeft="40px"
-                android:background="@mipmap/register_back2x" />
+                android:background="@mipmap/register_back" />
         </LinearLayout>
 
         <TextView

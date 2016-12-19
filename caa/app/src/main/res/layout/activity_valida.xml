@@ -24,7 +24,7 @@
                 android:layout_width="46px"
                 android:layout_height="30px"
                 android:layout_gravity="center"
-                android:background="@mipmap/register_back2x"
+                android:background="@mipmap/register_back"
                 android:id="@+id/valida_back" />
         </LinearLayout>
 
