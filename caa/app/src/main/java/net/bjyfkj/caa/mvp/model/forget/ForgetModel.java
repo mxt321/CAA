@@ -60,12 +60,13 @@ public class ForgetModel implements IForgetModel {
     }
 
     @Override
-    public void resetPWD(String account, String pwd, final OnUserForgetLinstener onUserForgetLinstener) {
+    public void resetPWD(String account, String pwd, String code, final OnUserForgetLinstener onUserForgetLinstener) {
         String sign = MD5Util.encrypt("User" + MD5Util.encrypt("bjyfkj4006010136") + "resetPWD");
         RequestParams params = new RequestParams(PropertiesUtils.getpath("resetPWD"));
         params.addBodyParameter("sign", sign);
         params.addBodyParameter("phone", account);
-        params.addBodyParameter("password ", MD5Util.encrypt(pwd));
+        params.addBodyParameter("password", MD5Util.encrypt(pwd));
+//        params.addBodyParameter("code", code);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--标题 完善广告信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:background="#f66329"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/forget_right_return"
+            android:layout_width="wrap_content"
+            android:layout_height="108px"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="46px"
+                android:layout_height="30px"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40px"
+                android:background="@mipmap/register_back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="日期和设备选择"
+            android:textColor="#ffffff"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24px"
+            android:layout_marginRight="24px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30px">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="选择时间"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/select_time_grid"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16px"
+                android:horizontalSpacing="40px"
+                android:numColumns="2"
+                android:verticalSpacing="16px"
+                android:layout_height="260px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="24px"
+        android:layout_marginRight="24px"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="30px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="52px"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="可选商家"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="全选"
+                android:textColor="#555555"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:layout_weight="1.18"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <GridView
+                    android:id="@+id/select_device_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16px"
+                    android:horizontalSpacing="16px"
+                    android:numColumns="4"
+                    android:verticalSpacing="16px" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="24px"
+        android:layout_marginRight="24px"
+        android:layout_marginTop="20px"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总计:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_device_sumcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0屏"
+                android:textSize="16sp"
+                android:layout_marginLeft="16px" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:text="发布"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="200px" />
+    </LinearLayout>
+</LinearLayout>

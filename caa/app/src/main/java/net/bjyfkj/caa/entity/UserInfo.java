@@ -1,10 +1,12 @@
 package net.bjyfkj.caa.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by YFKJ-1 on 2016/12/13.
  */
 
-public class UserInfo {
+public class UserInfo implements Serializable{
 
     /**
      * data : {"user_id":"29","nickname":"15010035699","headimg":"http://admin.bjyfkj.net//Public/Uploads/avatar/avatar.png","token":"75bd66b0a2957f9d35a1b7a10cb09807"}

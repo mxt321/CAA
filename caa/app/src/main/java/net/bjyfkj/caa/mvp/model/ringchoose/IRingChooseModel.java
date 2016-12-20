@@ -5,5 +5,9 @@ package net.bjyfkj.caa.mvp.model.ringchoose;
  */
 
 public interface IRingChooseModel {
-    
+    void getCity(String token, OnGetCityLinstener onGetCityLinstener);
+
+    void getDistricts(String token, String city, OnGetCityLinstener onGetCityLinstener);
+
+    void getArea(String token, String city, String district, OnGetCityLinstener onGetCityLinstener);
 }

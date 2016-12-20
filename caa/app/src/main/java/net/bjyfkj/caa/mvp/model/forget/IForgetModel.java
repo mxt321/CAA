@@ -13,7 +13,7 @@ public interface IForgetModel {
     void checkCode(String account, String code, OnUserCheckCodeLinstener onUserCheckCodeLinstener);
 
     //重置密码
-    void resetPWD(String account, String pwd, OnUserForgetLinstener onUserForgetLinstener);
+    void resetPWD(String account, String pwd, String code, OnUserForgetLinstener onUserForgetLinstener);
 
     //获取验证码
     void sendValide(String account, OnValideLoginLinstener onValideLoginLinstener);

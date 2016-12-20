@@ -186,7 +186,8 @@ public class PerfectAdvertisingActivity extends AutoLayoutActivity implements Vi
                 break;
             case R.id.btn_infor_next://下一步
                 if (isnull()) {
-
+                    Intent intent = new Intent(PerfectAdvertisingActivity.this, RingChooseActivity.class);
+                    startActivity(intent);
                 }
                 break;
         }

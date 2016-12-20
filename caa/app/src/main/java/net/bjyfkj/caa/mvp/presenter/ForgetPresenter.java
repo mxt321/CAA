@@ -32,7 +32,7 @@ public class ForgetPresenter {
                             iForgetModel.checkCode(iForgetView.getetNumber(), iForgetView.getCode(), new OnUserCheckCodeLinstener() {
                                 @Override
                                 public void checkSuccess() {
-                                    iForgetModel.resetPWD(iForgetView.getetNumber(), iForgetView.getConfirm_Pwd(), new OnUserForgetLinstener() {
+                                    iForgetModel.resetPWD(iForgetView.getetNumber(), iForgetView.getConfirm_Pwd(), iForgetView.getCode(), new OnUserForgetLinstener() {
                                         @Override
                                         public void resetSuccess() {
                                             iForgetView.resetSuccess();
