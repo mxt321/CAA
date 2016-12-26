@@ -45,6 +45,8 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
     GridView hotAreaGrid;
     @InjectView(R.id.ll_hot_area)
     LinearLayout llHotArea;
+
+    static RingChooseActivity instance;
     private RingChoosePresenter presenter;
     private List<Map<String, String>> citys;
     private ChooseCityGridAdapter adapter;
@@ -68,6 +70,7 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
     }
 
     public void init() {
+        instance = this;
         forgetRightReturn.setOnClickListener(this);
         presenter = new RingChoosePresenter(this);
         citys = new ArrayList<>();
@@ -127,9 +130,13 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
 
     @Override
     public void Timeout() {
+        Toast.makeText(x.app(), "登录超时", Toast.LENGTH_SHORT).show();
+        HomeActivity.instance.finish();
+        PerfectAdvertisingActivity.instance.finish();
         Intent intent = new Intent(RingChooseActivity.this, LoginActivity.class);
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
         startActivity(intent);
+        instance.finish();
     }
 
     @Override
@@ -138,7 +145,7 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
     }
 
     @Override
-    public void Success(int status, final List<Map<String, String>> list) {
+    public void Success(final int status, final List<Map<String, String>> list) {
         // 0 -城市列表   1 -区域列表   2 -商圈列表
         if (status == 0) {
             adapter.setmData(list);
@@ -173,7 +180,8 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
                     adapter3.setSelectPosition(i);
                     adapter3.notifyDataSetChanged();
                     String area = list.get(i).get("id");
-                    presenter.getArea();
+                    Intent intent = new Intent(RingChooseActivity.this, DateDeviceActivity.class);
+                    startActivity(intent);
                 }
             });
         }

@@ -162,7 +162,9 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".UI.activity.AdvertisingPreviewActivity" />
         <activity android:name=".UI.activity.RingChooseActivity" />
-        <activity android:name=".UI.activity.DateDeviceActivity"></activity>
+        <activity android:name=".UI.activity.DateDeviceActivity">
+
+        </activity>
     </application>
 
 </manifest>

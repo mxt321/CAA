@@ -41,7 +41,7 @@ public class LoginActivity extends AutoLayoutActivity implements View.OnClickLis
     Button btnLogin;
     @InjectView(R.id.tv_register)
     TextView tvRegister;
-
+    static LoginActivity instance;
     private LoginPresenter loginPresenter;
     private Intent intent;
     private long exitTime = 0;
@@ -57,6 +57,7 @@ public class LoginActivity extends AutoLayoutActivity implements View.OnClickLis
 
 
     public void init() {
+        instance = this;
         if (!SharedPreferencesUtils.getParam(x.app(), User.TOKEN, "").toString().equals("")) {
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);

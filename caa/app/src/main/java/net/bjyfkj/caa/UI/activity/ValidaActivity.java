@@ -119,6 +119,7 @@ public class ValidaActivity extends AutoLayoutActivity implements View.OnClickLi
         SharedPreferencesUtils.setParam(x.app(), User.HEADIMG, ui.getHeadimg());
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, ui.getToken());
         JPushUtil.setAlias(x.app(), ui.getUser_id());
+        LoginActivity.instance.finish();
         Intent intent = new Intent(ValidaActivity.this, HomeActivity.class);
         startActivity(intent);
         this.finish();

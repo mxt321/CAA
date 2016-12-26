@@ -103,10 +103,12 @@ public class UpNickNameActivity extends AutoLayoutActivity implements View.OnCli
                         vProgressDialog.dismissProgressDlg();
                     } else {
                         vProgressDialog.dismissProgressDlg();
+                        HomeActivity.instance.finish();
                         Toast.makeText(UpNickNameActivity.this, message, Toast.LENGTH_SHORT).show();
                         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
                         Intent intent = new Intent(UpNickNameActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        UpNickNameActivity.this.finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

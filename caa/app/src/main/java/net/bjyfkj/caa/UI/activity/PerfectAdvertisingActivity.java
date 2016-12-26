@@ -87,7 +87,7 @@ public class PerfectAdvertisingActivity extends AutoLayoutActivity implements Vi
     LinearLayout homeDetail;
     @InjectView(R.id.llContainer)
     LinearLayout llContainer;
-
+    static PerfectAdvertisingActivity instance;
     public static final int REQUEST_CODES = 123;//多选
     public static final int REQUEST_CODE = 456;//单选
     private ArrayList<String> path = new ArrayList<>();//多图片选择路径集合
@@ -103,6 +103,7 @@ public class PerfectAdvertisingActivity extends AutoLayoutActivity implements Vi
     }
 
     public void init() {
+        instance = this;
         forgetRightReturn.setOnClickListener(this);
         btnHomeAddphoto.setOnClickListener(this);
         itemImg.setOnClickListener(this);
