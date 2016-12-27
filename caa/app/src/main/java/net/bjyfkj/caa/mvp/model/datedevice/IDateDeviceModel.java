@@ -6,4 +6,6 @@ package net.bjyfkj.caa.mvp.model.datedevice;
 
 public interface IDateDeviceModel {
     void getSchedule(String token, OnGetScheduleLinstener onGetScheduleLinstener);
+
+    void getDevicesBySchedule(String token, int timestamp, int type, int area_id, OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener);
 }

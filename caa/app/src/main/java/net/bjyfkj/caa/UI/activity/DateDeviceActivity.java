@@ -2,6 +2,8 @@ package net.bjyfkj.caa.UI.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
@@ -65,6 +67,12 @@ public class DateDeviceActivity extends AutoLayoutActivity implements IDateDevic
         instance = this;
         dateDevicePresenter = new DateDevicePresenter(this);
         adapter = new DateAdapter();
+        forgetRightReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DateDeviceActivity.this.finish();
+            }
+        });
     }
 
     public void initdata() {
@@ -94,9 +102,19 @@ public class DateDeviceActivity extends AutoLayoutActivity implements IDateDevic
     }
 
     @Override
-    public void getScheduleSuccess(List<TimeEntity.DataBean> dataBeen) {
+    public void getScheduleSuccess(final List<TimeEntity.DataBean> dataBeen) {
         adapter.setmData(dataBeen);
         selectTimeGrid.setAdapter(adapter);
+        selectTimeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.setSelectPosition(i);
+                type = dataBeen.get(i).getType();
+                timestamp = dataBeen.get(i).getTimestamp();
+                area_id = 2;
+                dateDevicePresenter.getDevicesBySchedule();
+            }
+        });
     }
 
     @Override
@@ -116,7 +134,7 @@ public class DateDeviceActivity extends AutoLayoutActivity implements IDateDevic
 
     @Override
     public void getDevicesByScheduleError() {
-
+        Toast.makeText(x.app(), "获取失败", Toast.LENGTH_SHORT).show();
     }
 
     @Override

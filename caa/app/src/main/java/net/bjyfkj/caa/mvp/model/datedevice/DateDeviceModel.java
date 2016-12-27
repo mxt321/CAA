@@ -57,4 +57,36 @@ public class DateDeviceModel implements IDateDeviceModel {
 
         );
     }
+
+    @Override
+    public void getDevicesBySchedule(String token, int timestamp, int type, int area_id, OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener) {
+        String sign = MD5Util.encrypt("Ads" + MD5Util.encrypt("bjyfkj4006010136") + "getDevicesBySchedule");
+        RequestParams params = new RequestParams(PropertiesUtils.getpath("getDevicesBySchedule"));
+        params.addBodyParameter("sign", sign);
+        params.addBodyParameter("token", token);
+        params.addBodyParameter("timestamp", timestamp + "");
+        params.addBodyParameter("type", type + "");
+        params.addBodyParameter("area_id", area_id + "");
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i("getDevicesBySchedule", result + "");
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
 }

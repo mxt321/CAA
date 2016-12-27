@@ -3,6 +3,7 @@ package net.bjyfkj.caa.mvp.presenter;
 import net.bjyfkj.caa.entity.TimeEntity;
 import net.bjyfkj.caa.mvp.model.datedevice.DateDeviceModel;
 import net.bjyfkj.caa.mvp.model.datedevice.IDateDeviceModel;
+import net.bjyfkj.caa.mvp.model.datedevice.OnGetDevicesByScheduleLinstener;
 import net.bjyfkj.caa.mvp.model.datedevice.OnGetScheduleLinstener;
 import net.bjyfkj.caa.mvp.view.IDateDeviceView;
 
@@ -34,6 +35,28 @@ public class DateDevicePresenter {
             @Override
             public void scheduleError() {
                 iDateDeviceView.getScheduleError();
+            }
+
+            @Override
+            public void timeout() {
+                iDateDeviceView.Timeout();
+            }
+        });
+    }
+
+    /**
+     * 根据时刻表获取设备
+     */
+    public void getDevicesBySchedule() {
+        iDateDeviceModel.getDevicesBySchedule(iDateDeviceView.getToken(), iDateDeviceView.getTimestamp(), iDateDeviceView.getType(), iDateDeviceView.getArea_id(), new OnGetDevicesByScheduleLinstener() {
+            @Override
+            public void scheduleSuccess() {
+                iDateDeviceView.getDevicesByScheduleSuccess();
+            }
+
+            @Override
+            public void scheduleError() {
+                iDateDeviceView.getDevicesByScheduleError();
             }
 
             @Override
