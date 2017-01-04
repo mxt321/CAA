@@ -8,9 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhy.autolayout.AutoLayoutActivity;
-
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.mvp.presenter.ForgetPresenter;
 import net.bjyfkj.caa.mvp.view.IForgetView;
 import net.bjyfkj.caa.util.SendSmsTimerUtils;
@@ -18,7 +17,7 @@ import net.bjyfkj.caa.util.SendSmsTimerUtils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class ForgetActivity extends AutoLayoutActivity implements View.OnClickListener, IForgetView {
+public class ForgetActivity extends BaseActivity implements View.OnClickListener, IForgetView {
 
     @InjectView(R.id.forget_right_return)
     LinearLayout forgetRightReturn;

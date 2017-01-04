@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <!--标题 完善广告信息 -->
     <LinearLayout
@@ -64,18 +64,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="选择时间"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <GridView
                 android:id="@+id/select_time_grid"
                 android:layout_width="match_parent"
+                android:layout_height="280px"
                 android:layout_marginTop="16px"
                 android:horizontalSpacing="40px"
                 android:numColumns="2"
-                android:verticalSpacing="16px"
-                android:layout_height="280px" />
+                android:verticalSpacing="16px" />
         </LinearLayout>
 
     </LinearLayout>
@@ -85,15 +85,15 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="24px"
         android:layout_marginRight="24px"
+        android:layout_marginTop="30px"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginTop="30px">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
             android:layout_height="52px"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
@@ -134,6 +134,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="16px"
                     android:horizontalSpacing="16px"
+                    android:listSelector="@color/transparent"
                     android:numColumns="4"
                     android:verticalSpacing="16px" />
             </LinearLayout>
@@ -167,9 +168,9 @@
                 android:id="@+id/tv_device_sumcount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16px"
                 android:text="0屏"
-                android:textSize="16sp"
-                android:layout_marginLeft="16px" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -177,11 +178,11 @@
             android:id="@+id/btn_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="200px"
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:text="发布"
             android:textColor="#ffffff"
-            android:textSize="16sp"
-            android:layout_marginLeft="200px" />
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

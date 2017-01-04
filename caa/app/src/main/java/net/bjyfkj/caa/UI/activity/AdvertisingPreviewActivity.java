@@ -8,16 +8,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.zhy.autolayout.AutoLayoutActivity;
 
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 
 import org.xutils.x;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class AdvertisingPreviewActivity extends AutoLayoutActivity implements View.OnClickListener {
+public class AdvertisingPreviewActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.forget_right_return)
     LinearLayout forgetRightReturn;

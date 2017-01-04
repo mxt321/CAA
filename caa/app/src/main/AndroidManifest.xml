@@ -146,7 +146,10 @@
             android:value="b415106cea8b70ed3aabce2a" />
 
         <activity android:name=".UI.activity.LoginActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".UI.activity.ValidaActivity" />
         <activity android:name=".UI.activity.ForgetActivity" />
@@ -157,16 +160,8 @@
             android:name=".UI.activity.PerfectAdvertisingActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".UI.activity.AdvertisingPreviewActivity" />
-        <activity android:name=".UI.activity.RingChooseActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".UI.activity.DateDeviceActivity">
-
-        </activity>
+        <activity android:name=".UI.activity.RingChooseActivity"></activity>
+        <activity android:name=".UI.activity.DateDeviceActivity"></activity>
     </application>
 
 </manifest>

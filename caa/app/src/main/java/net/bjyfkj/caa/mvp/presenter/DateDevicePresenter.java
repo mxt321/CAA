@@ -1,5 +1,6 @@
 package net.bjyfkj.caa.mvp.presenter;
 
+import net.bjyfkj.caa.entity.DeviceEntity;
 import net.bjyfkj.caa.entity.TimeEntity;
 import net.bjyfkj.caa.mvp.model.datedevice.DateDeviceModel;
 import net.bjyfkj.caa.mvp.model.datedevice.IDateDeviceModel;
@@ -50,8 +51,8 @@ public class DateDevicePresenter {
     public void getDevicesBySchedule() {
         iDateDeviceModel.getDevicesBySchedule(iDateDeviceView.getToken(), iDateDeviceView.getTimestamp(), iDateDeviceView.getType(), iDateDeviceView.getArea_id(), new OnGetDevicesByScheduleLinstener() {
             @Override
-            public void scheduleSuccess() {
-                iDateDeviceView.getDevicesByScheduleSuccess();
+            public void scheduleSuccess(List<DeviceEntity.DataBean> mDataBean) {
+                iDateDeviceView.getDevicesByScheduleSuccess(mDataBean);
             }
 
             @Override

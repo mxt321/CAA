@@ -16,10 +16,12 @@ import com.zhy.autolayout.AutoLinearLayout;
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.activity.LoginActivity;
 import net.bjyfkj.caa.UI.activity.PerfectAdvertisingActivity;
+import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.IndexInfo;
 import net.bjyfkj.caa.mvp.presenter.HomePresenter;
 import net.bjyfkj.caa.mvp.view.IHomeView;
+import net.bjyfkj.caa.util.JPushUtil;
 import net.bjyfkj.caa.util.SharedPreferencesUtils;
 
 import org.xutils.x;
@@ -97,8 +99,11 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
     @Override
     public void timeout() {
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
+        JPushUtil.setAlias(x.app(), "");
+        ActivityCollector.finishAll();
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
+
     }
 
     @Override

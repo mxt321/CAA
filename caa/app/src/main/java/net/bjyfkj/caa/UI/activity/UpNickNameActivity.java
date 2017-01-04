@@ -9,10 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhy.autolayout.AutoLayoutActivity;
-
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
+import net.bjyfkj.caa.util.JPushUtil;
 import net.bjyfkj.caa.util.MD5Util;
 import net.bjyfkj.caa.util.PropertiesUtils;
 import net.bjyfkj.caa.util.SharedPreferencesUtils;
@@ -29,7 +29,7 @@ import butterknife.InjectView;
 
 import static net.bjyfkj.caa.R.id.et_nickname;
 
-public class UpNickNameActivity extends AutoLayoutActivity implements View.OnClickListener {
+public class UpNickNameActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.right_return)
     LinearLayout rightReturn;
@@ -106,6 +106,7 @@ public class UpNickNameActivity extends AutoLayoutActivity implements View.OnCli
                         HomeActivity.instance.finish();
                         Toast.makeText(UpNickNameActivity.this, message, Toast.LENGTH_SHORT).show();
                         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
+                        JPushUtil.setAlias(x.app(), "");
                         Intent intent = new Intent(UpNickNameActivity.this, LoginActivity.class);
                         startActivity(intent);
                         UpNickNameActivity.this.finish();

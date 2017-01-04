@@ -2,7 +2,6 @@ package net.bjyfkj.caa.UI.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.fragment.HomeFragment;
 import net.bjyfkj.caa.UI.fragment.MeFragment;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.util.DataUtil;
 
 import org.xutils.x;
@@ -20,7 +20,7 @@ import org.xutils.x;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class HomeActivity extends FragmentActivity implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.home_home)
     RadioButton homeHome;

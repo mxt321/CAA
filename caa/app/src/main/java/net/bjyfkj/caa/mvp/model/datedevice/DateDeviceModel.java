@@ -2,6 +2,7 @@ package net.bjyfkj.caa.mvp.model.datedevice;
 
 import android.util.Log;
 
+import net.bjyfkj.caa.entity.DeviceEntity;
 import net.bjyfkj.caa.entity.TimeEntity;
 import net.bjyfkj.caa.util.GsonUtils;
 import net.bjyfkj.caa.util.MD5Util;
@@ -59,7 +60,7 @@ public class DateDeviceModel implements IDateDeviceModel {
     }
 
     @Override
-    public void getDevicesBySchedule(String token, int timestamp, int type, int area_id, OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener) {
+    public void getDevicesBySchedule(String token, int timestamp, int type, int area_id, final OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener) {
         String sign = MD5Util.encrypt("Ads" + MD5Util.encrypt("bjyfkj4006010136") + "getDevicesBySchedule");
         RequestParams params = new RequestParams(PropertiesUtils.getpath("getDevicesBySchedule"));
         params.addBodyParameter("sign", sign);
@@ -71,6 +72,15 @@ public class DateDeviceModel implements IDateDeviceModel {
             @Override
             public void onSuccess(String result) {
                 Log.i("getDevicesBySchedule", result + "");
+                DeviceEntity deviceEntity = GsonUtils.fromJson(result, DeviceEntity.class);
+                if (deviceEntity.getStatus() == 1) {
+                    List<DeviceEntity.DataBean> mDataBean = deviceEntity.getData();
+                    onGetDevicesByScheduleLinstener.scheduleSuccess(mDataBean);
+                } else if (deviceEntity.getStatus() == -1) {
+                    onGetDevicesByScheduleLinstener.timeout();
+                } else {
+                    onGetDevicesByScheduleLinstener.scheduleError();
+                }
             }
 
             @Override

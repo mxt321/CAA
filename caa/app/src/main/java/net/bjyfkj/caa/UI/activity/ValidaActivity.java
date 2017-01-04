@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhy.autolayout.AutoLayoutActivity;
-
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.UserInfo;
 import net.bjyfkj.caa.mvp.presenter.LoginPresenter;
@@ -28,7 +27,7 @@ import butterknife.InjectView;
 
 import static net.bjyfkj.caa.R.id.tv_valida_valida;
 
-public class ValidaActivity extends AutoLayoutActivity implements View.OnClickListener, ILoginView {
+public class ValidaActivity extends BaseActivity implements View.OnClickListener, ILoginView {
 
     @InjectView(R.id.et_number)
     EditText etNumber;

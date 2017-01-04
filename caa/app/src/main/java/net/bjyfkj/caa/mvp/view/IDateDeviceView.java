@@ -1,5 +1,6 @@
 package net.bjyfkj.caa.mvp.view;
 
+import net.bjyfkj.caa.entity.DeviceEntity;
 import net.bjyfkj.caa.entity.TimeEntity;
 
 import java.util.List;
@@ -26,6 +27,6 @@ public interface IDateDeviceView {
 
     void getDevicesByScheduleError();
 
-    void getDevicesByScheduleSuccess();
+    void getDevicesByScheduleSuccess(List<DeviceEntity.DataBean> mDataBean);
 
 }

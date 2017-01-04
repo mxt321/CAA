@@ -70,12 +70,12 @@
                 <Button
                     android:id="@+id/btn_select_city"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/shape1"
+                    android:background="@drawable/ring_choose_selector_item"
                     android:text="北京"
                     android:textColor="@color/colorGree"
                     android:textSize="14sp"
-                    android:layout_width="230px"
-                    android:layout_height="74px" />
+                    android:layout_height="74px"
+                    android:layout_width="220px" />
 
             </LinearLayout>
 

@@ -174,6 +174,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
     @Override
     public void timeout() {
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
+        JPushUtil.setAlias(x.app(), "");
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();

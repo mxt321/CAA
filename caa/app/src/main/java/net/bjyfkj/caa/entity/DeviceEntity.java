@@ -52,23 +52,20 @@ public class DeviceEntity {
          */
 
 
-
-        private boolean isSelect = false;
-
-        public boolean isSelect() {
-            return isSelect;
-        }
-
-
-        public void setSelect(boolean select) {
-            isSelect = select;
-        }
-
         private String device_id;
         private String name;
         private String logo;
         private String current_ads;
         private String max_ads;
+        private boolean isselected;
+
+        public boolean isselected() {
+            return isselected;
+        }
+
+        public void setIsselected(boolean isselected) {
+            this.isselected = isselected;
+        }
 
         public String getDevice_id() {
             return device_id;

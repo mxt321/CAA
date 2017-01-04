@@ -9,13 +9,13 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.zhy.autolayout.AutoLayoutActivity;
-
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.adapter.ChooseCityGridAdapter;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.mvp.presenter.RingChoosePresenter;
 import net.bjyfkj.caa.mvp.view.IRingChooseView;
+import net.bjyfkj.caa.util.JPushUtil;
 import net.bjyfkj.caa.util.SharedPreferencesUtils;
 
 import org.xutils.x;
@@ -27,7 +27,7 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class RingChooseActivity extends AutoLayoutActivity implements View.OnClickListener, IRingChooseView {
+public class RingChooseActivity extends BaseActivity implements View.OnClickListener, IRingChooseView {
 
     @InjectView(R.id.forget_right_return)
     LinearLayout forgetRightReturn;
@@ -131,12 +131,13 @@ public class RingChooseActivity extends AutoLayoutActivity implements View.OnCli
     @Override
     public void Timeout() {
         Toast.makeText(x.app(), "登录超时", Toast.LENGTH_SHORT).show();
-        HomeActivity.instance.finish();
-        PerfectAdvertisingActivity.instance.finish();
         Intent intent = new Intent(RingChooseActivity.this, LoginActivity.class);
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
+        JPushUtil.setAlias(x.app(), "");
         startActivity(intent);
         instance.finish();
+        HomeActivity.instance.finish();
+        PerfectAdvertisingActivity.instance.finish();
     }
 
     @Override

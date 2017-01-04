@@ -9,9 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhy.autolayout.AutoLayoutActivity;
-
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.UserInfo;
 import net.bjyfkj.caa.mvp.presenter.LoginPresenter;
@@ -25,7 +24,7 @@ import org.xutils.x;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class LoginActivity extends AutoLayoutActivity implements View.OnClickListener, ILoginView {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginView {
 
     @InjectView(R.id.tv_logo)
     TextView tvLogo;

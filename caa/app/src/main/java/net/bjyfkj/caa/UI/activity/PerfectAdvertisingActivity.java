@@ -22,9 +22,9 @@ import com.bumptech.glide.Glide;
 import com.jaiky.imagespickers.ImageConfig;
 import com.jaiky.imagespickers.ImageSelector;
 import com.jaiky.imagespickers.ImageSelectorActivity;
-import com.zhy.autolayout.AutoLayoutActivity;
 
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.util.GlideLoader;
 
 import org.xutils.x;
@@ -41,7 +41,7 @@ import static net.bjyfkj.caa.R.id.et_start_time;
 import static net.bjyfkj.caa.R.id.promotion_get_type;
 import static net.bjyfkj.caa.R.id.shop_address;
 
-public class PerfectAdvertisingActivity extends AutoLayoutActivity implements View.OnClickListener, View.OnTouchListener {
+public class PerfectAdvertisingActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener {
 
     @InjectView(R.id.forget_right_return)
     LinearLayout forgetRightReturn;
