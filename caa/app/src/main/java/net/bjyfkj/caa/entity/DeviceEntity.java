@@ -52,7 +52,7 @@ public class DeviceEntity {
          */
 
 
-        private String device_id;
+        private int device_id;
         private String name;
         private String logo;
         private String current_ads;
@@ -67,11 +67,11 @@ public class DeviceEntity {
             this.isselected = isselected;
         }
 
-        public String getDevice_id() {
+        public int getDevice_id() {
             return device_id;
         }
 
-        public void setDevice_id(String device_id) {
+        public void setDevice_id(int device_id) {
             this.device_id = device_id;
         }
 

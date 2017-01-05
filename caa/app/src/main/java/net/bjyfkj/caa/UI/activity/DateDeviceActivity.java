@@ -15,8 +15,10 @@ import android.widget.Toast;
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.adapter.DateAdapter;
 import net.bjyfkj.caa.UI.adapter.DeviceAdapter;
+import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
+import net.bjyfkj.caa.entity.AdvertisingEntity;
 import net.bjyfkj.caa.entity.CheckDeviceEntity;
 import net.bjyfkj.caa.entity.DeviceEntity;
 import net.bjyfkj.caa.entity.TimeEntity;
@@ -27,6 +29,7 @@ import net.bjyfkj.caa.util.SharedPreferencesUtils;
 
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -46,7 +49,6 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     TextView tvDeviceSumcount;
     @InjectView(R.id.btn_release)
     Button btnRelease;
-    static DateDeviceActivity instance;
     private DateDevicePresenter dateDevicePresenter;
     private DateAdapter adapter;//时间表的adapter
     private int timestamp;
@@ -54,7 +56,9 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     private int area_id;
     private DeviceAdapter mDeviceAdapter;//设备列表的adapter
     private List<DeviceEntity.DataBean> DataBean;//当前正在显示的设备数据
-    private List<CheckDeviceEntity> checklist;
+    private List<CheckDeviceEntity> checklist = new ArrayList<>();
+    private int deviceCount;
+    private AdvertisingEntity advertisingEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +74,33 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
         initdata();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (DataBean != null) {
+            DataBean = null;
+        }
+        if (checklist != null) {
+            checklist = null;
+        }
+        if (advertisingEntity != null) {
+            advertisingEntity = null;
+        }
+        if (dateDevicePresenter != null) {
+            dateDevicePresenter = null;
+        }
+    }
+
     public void init() {
-        instance = this;
+        Intent intent = getIntent();
+        advertisingEntity = (AdvertisingEntity) intent.getSerializableExtra("advertisingEntity");
         dateDevicePresenter = new DateDevicePresenter(this);
         Drawable drawable = getResources().getDrawable(R.drawable.checkbox_selector);
         drawable.setBounds(0, 0, 32, 32);
         checkBox.setCompoundDrawables(drawable, null, null, null);
         adapter = new DateAdapter();
-        mDeviceAdapter = new DeviceAdapter(instance);
+        mDeviceAdapter = new DeviceAdapter(this);
         forgetRightReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,8 +126,21 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
                         }
                     }
                 }
+                checklist = checkDevice();
+                device_count();
                 mDeviceAdapter.setmDatabeans(DataBean);
                 mDeviceAdapter.notifyDataSetChanged();
+            }
+        });
+        //发布广告
+        btnRelease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (deviceCount > 0) {
+                    dateDevicePresenter.submitAds();
+                } else {
+                    Toast.makeText(x.app(), "您还未选择设备", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -121,14 +157,12 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     @Override
     public void Timeout() {
         Toast.makeText(x.app(), "登录超时", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(DateDeviceActivity.this, LoginActivity.class);
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
         JPushUtil.setAlias(x.app(), "");
+        ActivityCollector.finishAll();
+        Intent intent = new Intent(DateDeviceActivity.this, LoginActivity.class);
         startActivity(intent);
-        HomeActivity.instance.finish();
-        PerfectAdvertisingActivity.instance.finish();
-        RingChooseActivity.instance.finish();
-        instance.finish();
+        this.finish();
     }
 
     @Override
@@ -152,7 +186,6 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
                 adapter.setSelectPosition(i);
                 type = dataBeen.get(i).getType();
                 timestamp = dataBeen.get(i).getTimestamp();
-                area_id = 2;
                 dateDevicePresenter.getDevicesBySchedule();
             }
         });
@@ -169,8 +202,8 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     }
 
     @Override
-    public int getArea_id() {
-        return area_id;
+    public String getArea_id() {
+        return advertisingEntity.getArea_id();
     }
 
     @Override
@@ -186,6 +219,7 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     @Override
     public void getDevicesByScheduleSuccess(List<DeviceEntity.DataBean> mDataBean) {
         DataBean = mDataBean;
+        initDevice();
         mDeviceAdapter.setmDatabeans(DataBean);
         selectDeviceGrid.setAdapter(mDeviceAdapter);
         selectDeviceGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -194,11 +228,11 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
                 if (DataBean.get(i).getCurrent_ads() != DataBean.get(i).getMax_ads()) {//判断当前设备是否可被选中
                     if (DataBean.get(i).isselected()) {//判断当前设备是否已经选择了  如果没有则选中
                         DataBean.get(i).setIsselected(false);
-
                     } else {
                         DataBean.get(i).setIsselected(true);
-
                     }
+                    checklist = checkDevice();
+                    device_count();
                     mDeviceAdapter.setmDatabeans(DataBean);
                     mDeviceAdapter.notifyDataSetChanged();
                 }
@@ -207,8 +241,70 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        DataBean.clear();
+    public AdvertisingEntity getAdvertisingEntity() {
+        return advertisingEntity;
     }
+
+    @Override
+    public List<CheckDeviceEntity> getCheckDeviceEntity() {
+        return checklist;
+    }
+
+    @Override
+    public void submitAdsSuccess() {
+
+    }
+
+    @Override
+    public void submitAdsError() {
+
+    }
+
+    /***
+     * 根据记录的设备同时显示出来
+     */
+    public void initDevice() {
+        for (int i = 0; i < checklist.size(); i++) {
+            if (checklist.get(i).getType() == type && checklist.get(i).getDate() == timestamp) {
+                for (int i1 = 0; i1 < checklist.get(i).getDevice_id().size(); i1++) {
+                    for (int i2 = 0; i2 < DataBean.size(); i2++) {
+                        if (checklist.get(i).getDevice_id().get(i1) == DataBean.get(i2).getDevice_id()) {
+                            DataBean.get(i2).setIsselected(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /***
+     * 保存选中的设备
+     *
+     * @return
+     */
+    public List<CheckDeviceEntity> checkDevice() {
+        CheckDeviceEntity checkDeviceEntity = new CheckDeviceEntity();
+        checkDeviceEntity.setDate(timestamp);
+        checkDeviceEntity.setType(type);
+        for (int i1 = 0; i1 < DataBean.size(); i1++) {
+            if (DataBean.get(i1).isselected()) {
+                checkDeviceEntity.getDevice_id().add(DataBean.get(i1).getDevice_id());
+            }
+        }
+        return CheckDeviceEntity.addCheckDevice(checklist, checkDeviceEntity);
+    }
+
+    /***
+     * 统计被选中的广告屏总数量
+     */
+    public void device_count() {
+        deviceCount = 0;
+        for (int i = 0; i < checklist.size(); i++) {
+            deviceCount += checklist.get(i).getDevice_id().size();
+        }
+        tvDeviceSumcount.setText(deviceCount + "屏");
+    }
+
+
 }

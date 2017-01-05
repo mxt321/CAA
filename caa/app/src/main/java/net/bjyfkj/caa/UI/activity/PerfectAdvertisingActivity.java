@@ -25,10 +25,13 @@ import com.jaiky.imagespickers.ImageSelectorActivity;
 
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.app.BaseActivity;
+import net.bjyfkj.caa.entity.AdvertisingEntity;
 import net.bjyfkj.caa.util.GlideLoader;
 
 import org.xutils.x;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -87,12 +90,13 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
     LinearLayout homeDetail;
     @InjectView(R.id.llContainer)
     LinearLayout llContainer;
-    static PerfectAdvertisingActivity instance;
     public static final int REQUEST_CODES = 123;//多选
     public static final int REQUEST_CODE = 456;//单选
-    private ArrayList<String> path = new ArrayList<>();//多图片选择路径集合
+    private ArrayList<String> poster = new ArrayList<>();//多图片选择路径集合
     private ImageConfig imageConfig;
     private String item_path = "";
+    private AdvertisingEntity advertisingEntity = new AdvertisingEntity();
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +106,25 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
         init();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (advertisingEntity != null) {
+            advertisingEntity = null;
+        }
+        if (simpleDateFormat != null) {
+            simpleDateFormat = null;
+        }
+        if (poster != null) {
+            poster = null;
+        }
+        if (imageConfig != null) {
+            imageConfig = null;
+        }
+    }
+
     public void init() {
-        instance = this;
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         forgetRightReturn.setOnClickListener(this);
         btnHomeAddphoto.setOnClickListener(this);
         itemImg.setOnClickListener(this);
@@ -134,7 +155,7 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
                         //设置图片显示容器，参数：、（容器，每行显示数量，是否可删除）
                         .setContainer(llContainer, 4, true)
                         // 已选择的图片路径
-                        .pathList(path)
+                        .pathList(poster)
                         // 拍照后存放的图片路径（默认 /temp/picture）
                         .filePath("/temp")
                         // 开启拍照功能 （默认关闭）
@@ -181,13 +202,34 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
                     intent.putExtra("description", description.getText().toString());//活动描述
                     intent.putExtra("item_img", item_path);//商品图片
                     intent.putExtra("shop_address", shopAddress.getText().toString());//店铺地址
-                    intent.putExtra("path", path.get(0));
+                    intent.putExtra("path", poster.get(0));
                     startActivity(intent);
                 }
                 break;
             case R.id.btn_infor_next://下一步
                 if (isnull()) {
                     Intent intent = new Intent(PerfectAdvertisingActivity.this, RingChooseActivity.class);
+                    advertisingEntity.setTitle(etHomeTitle.getText().toString());
+                    advertisingEntity.setContent(content.getText().toString());
+                    advertisingEntity.setPoster(poster);
+                    advertisingEntity.setItem_img(item_path);
+                    advertisingEntity.setDescription(description.getText().toString());
+                    advertisingEntity.setShop_name(shopName.getText().toString());
+                    advertisingEntity.setShop_address(shopAddress.getText().toString());
+                    advertisingEntity.setPromotion_count(promotionCount.getText().toString());
+                    advertisingEntity.setPromotion_content(promotionContent.getText().toString());
+                    advertisingEntity.setPromotion_expire(etValidaDate.getText().toString());
+                    try {
+                        advertisingEntity.setStart_time(simpleDateFormat.parse(etStartTime.getText().toString()).getTime() / 1000 + "");
+                        advertisingEntity.setEnd_time(simpleDateFormat.parse(etEndTime.getText().toString()).getTime() / 1000 + "");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    advertisingEntity.setDirection_for_use(directionForUse.getText().toString());
+                    advertisingEntity.setPromotion_get_type(promotionGetType.getText().toString());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("advertisingEntity", advertisingEntity);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;
@@ -207,7 +249,7 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
         } else if (content.getText().toString().equals("")) {
             Toast.makeText(x.app(), "请输入活动内容", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (path.size() <= 0) {
+        } else if (poster.size() <= 0) {
             Toast.makeText(x.app(), "请添加海报图片", Toast.LENGTH_SHORT).show();
             return false;
         } else if (item_path.equals("")) {
@@ -257,8 +299,8 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
             for (String path : pathList) {
                 Log.i("REQUEST_CODES", path + "");
             }
-            path.clear();
-            path.addAll(pathList);
+            poster.clear();
+            poster.addAll(pathList);
         } else if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {//单选
             List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
             for (String path : pathList) {
@@ -293,6 +335,7 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
                         StringBuffer sb = new StringBuffer();
                         sb.append(String.format("%d-%02d-%02d", datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth()));
                         sb.append("");
+
                         etStartTime.setText(sb);
                         etEndTime.requestFocus();
                         dialog.cancel();
@@ -320,6 +363,7 @@ public class PerfectAdvertisingActivity extends BaseActivity implements View.OnC
                                 datePicker.getYear(),
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
+
                         sb.append("");
                         etEndTime.setText(sb);
                         dialog.cancel();

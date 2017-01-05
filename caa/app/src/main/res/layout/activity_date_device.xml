@@ -147,7 +147,7 @@
         android:layout_marginLeft="24px"
         android:layout_marginRight="24px"
         android:layout_marginTop="20px"
-        android:layout_weight="1.5"
+        android:layout_weight="1.6"
         android:gravity="center"
         android:orientation="horizontal">
 

@@ -2,6 +2,8 @@ package net.bjyfkj.caa.mvp.model.datedevice;
 
 import android.util.Log;
 
+import net.bjyfkj.caa.entity.AdvertisingEntity;
+import net.bjyfkj.caa.entity.CheckDeviceEntity;
 import net.bjyfkj.caa.entity.DeviceEntity;
 import net.bjyfkj.caa.entity.TimeEntity;
 import net.bjyfkj.caa.util.GsonUtils;
@@ -60,14 +62,14 @@ public class DateDeviceModel implements IDateDeviceModel {
     }
 
     @Override
-    public void getDevicesBySchedule(String token, int timestamp, int type, int area_id, final OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener) {
+    public void getDevicesBySchedule(String token, int timestamp, int type, String area_id, final OnGetDevicesByScheduleLinstener onGetDevicesByScheduleLinstener) {
         String sign = MD5Util.encrypt("Ads" + MD5Util.encrypt("bjyfkj4006010136") + "getDevicesBySchedule");
         RequestParams params = new RequestParams(PropertiesUtils.getpath("getDevicesBySchedule"));
         params.addBodyParameter("sign", sign);
         params.addBodyParameter("token", token);
         params.addBodyParameter("timestamp", timestamp + "");
         params.addBodyParameter("type", type + "");
-        params.addBodyParameter("area_id", area_id + "");
+        params.addBodyParameter("area_id", area_id);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -81,6 +83,34 @@ public class DateDeviceModel implements IDateDeviceModel {
                 } else {
                     onGetDevicesByScheduleLinstener.scheduleError();
                 }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+    @Override
+    public void submitAds(String token, AdvertisingEntity advertisingEntity, List<CheckDeviceEntity> checkDeviceEntities, OnSubmitAdsLinstener onSubmitAdsLinstener) {
+        String sign = MD5Util.encrypt("Ads" + MD5Util.encrypt("bjyfkj4006010136") + "submitAds");
+        RequestParams params = new RequestParams(PropertiesUtils.getpath("submitAds"));
+        params.addBodyParameter("sign", sign);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
             }
 
             @Override

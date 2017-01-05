@@ -1,5 +1,6 @@
 package net.bjyfkj.caa.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,15 +15,15 @@ public class CheckDeviceEntity {
      * device_id : [1,2,3]
      */
 
-    private String date;
+    private int date;
     private int type;
-    private List<Integer> device_id;
+    private List<Integer> device_id = new ArrayList<>();
 
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
@@ -40,5 +41,17 @@ public class CheckDeviceEntity {
 
     public void setDevice_id(List<Integer> device_id) {
         this.device_id = device_id;
+    }
+
+    public static List<CheckDeviceEntity> addCheckDevice(List<CheckDeviceEntity> checkDeviceEntities, CheckDeviceEntity checkDeviceEntity) {
+        for (int i = 0; i < checkDeviceEntities.size(); i++) {
+            if (checkDeviceEntities.get(i).getDate() == checkDeviceEntity.getDate() && checkDeviceEntities.get(i).getType() == checkDeviceEntity.getType()) {
+                checkDeviceEntities.remove(i);
+            }
+        }
+        if (checkDeviceEntity.getDevice_id().size() > 0) {
+            checkDeviceEntities.add(checkDeviceEntity);
+        }
+        return checkDeviceEntities;
     }
 }

@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.adapter.ChooseCityGridAdapter;
+import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
+import net.bjyfkj.caa.entity.AdvertisingEntity;
 import net.bjyfkj.caa.mvp.presenter.RingChoosePresenter;
 import net.bjyfkj.caa.mvp.view.IRingChooseView;
 import net.bjyfkj.caa.util.JPushUtil;
@@ -46,7 +48,6 @@ public class RingChooseActivity extends BaseActivity implements View.OnClickList
     @InjectView(R.id.ll_hot_area)
     LinearLayout llHotArea;
 
-    static RingChooseActivity instance;
     private RingChoosePresenter presenter;
     private List<Map<String, String>> citys;
     private ChooseCityGridAdapter adapter;
@@ -54,6 +55,7 @@ public class RingChooseActivity extends BaseActivity implements View.OnClickList
     private ChooseCityGridAdapter adapter3;
     private String city;
     private String district;
+    private AdvertisingEntity advertisingEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +71,15 @@ public class RingChooseActivity extends BaseActivity implements View.OnClickList
         initdata();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        advertisingEntity = null;
+    }
+
     public void init() {
-        instance = this;
+        Intent intent = getIntent();
+        advertisingEntity = (AdvertisingEntity) intent.getSerializableExtra("advertisingEntity");
         forgetRightReturn.setOnClickListener(this);
         presenter = new RingChoosePresenter(this);
         citys = new ArrayList<>();
@@ -131,13 +140,11 @@ public class RingChooseActivity extends BaseActivity implements View.OnClickList
     @Override
     public void Timeout() {
         Toast.makeText(x.app(), "登录超时", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(RingChooseActivity.this, LoginActivity.class);
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
         JPushUtil.setAlias(x.app(), "");
+        ActivityCollector.finishAll();
+        Intent intent = new Intent(RingChooseActivity.this, LoginActivity.class);
         startActivity(intent);
-        instance.finish();
-        HomeActivity.instance.finish();
-        PerfectAdvertisingActivity.instance.finish();
     }
 
     @Override
@@ -180,8 +187,11 @@ public class RingChooseActivity extends BaseActivity implements View.OnClickList
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     adapter3.setSelectPosition(i);
                     adapter3.notifyDataSetChanged();
-                    String area = list.get(i).get("id");
+                    advertisingEntity.setArea_id(list.get(i).get("id"));
                     Intent intent = new Intent(RingChooseActivity.this, DateDeviceActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("advertisingEntity", advertisingEntity);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });

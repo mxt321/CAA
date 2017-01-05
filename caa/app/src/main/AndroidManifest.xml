@@ -160,7 +160,9 @@
             android:name=".UI.activity.PerfectAdvertisingActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".UI.activity.AdvertisingPreviewActivity" />
-        <activity android:name=".UI.activity.RingChooseActivity"></activity>
+        <activity android:name=".UI.activity.RingChooseActivity">
+
+        </activity>
         <activity android:name=".UI.activity.DateDeviceActivity"></activity>
     </application>
 

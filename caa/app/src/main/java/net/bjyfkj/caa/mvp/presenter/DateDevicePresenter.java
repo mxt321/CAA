@@ -6,6 +6,7 @@ import net.bjyfkj.caa.mvp.model.datedevice.DateDeviceModel;
 import net.bjyfkj.caa.mvp.model.datedevice.IDateDeviceModel;
 import net.bjyfkj.caa.mvp.model.datedevice.OnGetDevicesByScheduleLinstener;
 import net.bjyfkj.caa.mvp.model.datedevice.OnGetScheduleLinstener;
+import net.bjyfkj.caa.mvp.model.datedevice.OnSubmitAdsLinstener;
 import net.bjyfkj.caa.mvp.view.IDateDeviceView;
 
 import java.util.List;
@@ -66,5 +67,28 @@ public class DateDevicePresenter {
             }
         });
     }
+
+    /***
+     * 发布广告
+     */
+    public void submitAds() {
+        iDateDeviceModel.submitAds(iDateDeviceView.getToken(), iDateDeviceView.getAdvertisingEntity(), iDateDeviceView.getCheckDeviceEntity(), new OnSubmitAdsLinstener() {
+            @Override
+            public void submitAdsSuccess() {
+                iDateDeviceView.submitAdsSuccess();
+            }
+
+            @Override
+            public void submitAdsError() {
+                iDateDeviceView.submitAdsError();
+            }
+
+            @Override
+            public void timeout() {
+                iDateDeviceView.Timeout();
+            }
+        });
+    }
+
 
 }
