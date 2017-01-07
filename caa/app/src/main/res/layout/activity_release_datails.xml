@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--标题 日期设备选择 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:background="#f66329"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/forget_right_return"
+            android:layout_width="wrap_content"
+            android:layout_height="108px"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="46px"
+                android:layout_height="30px"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40px"
+                android:background="@mipmap/register_back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="发布详情"
+            android:textColor="#ffffff"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/backgroundgray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#f8f8f8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60px"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正在发布:"
+                    android:textSize="16sp"
+
+                    android:layout_marginLeft="24px"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/releasing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10屏"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/id_swipe_ly"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lv_release_detail"
+                android:divider="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

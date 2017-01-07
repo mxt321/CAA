@@ -38,4 +38,8 @@ public interface IDateDeviceView {
     void submitAdsSuccess();
 
     void submitAdsError();
+
+    void showProgressDlg();
+
+    void dismissProgressDlg();
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.util.JPushUtil;
@@ -101,9 +102,9 @@ public class UpNickNameActivity extends BaseActivity implements View.OnClickList
                     } else if (jsonInt == 0) {
                         Toast.makeText(UpNickNameActivity.this, "昵称修改失败", Toast.LENGTH_SHORT).show();
                         vProgressDialog.dismissProgressDlg();
-                    } else {
+                    } else if (jsonInt == -1) {
                         vProgressDialog.dismissProgressDlg();
-                        HomeActivity.instance.finish();
+                        ActivityCollector.finishAll();
                         Toast.makeText(UpNickNameActivity.this, message, Toast.LENGTH_SHORT).show();
                         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, "");
                         JPushUtil.setAlias(x.app(), "");

@@ -80,7 +80,7 @@ public class MeModel implements IMeModel {
                         onUpHeadlinstener.upHeanSuccess(urlPath);
                     } else if (status == -1) {
                         onUpHeadlinstener.upHeadTimeout();
-                    } else {
+                    } else if (status == 0) {
                         onUpHeadlinstener.upHeadError();
                     }
                 } catch (JSONException e) {

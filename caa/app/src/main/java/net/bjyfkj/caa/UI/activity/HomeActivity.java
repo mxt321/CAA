@@ -26,7 +26,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     RadioButton homeHome;
     @InjectView(R.id.home_me)
     RadioButton homeMe;
-    static HomeActivity instance;
     private FragmentManager fm;
     private HomeFragment homeFragment;
     private MeFragment meFragment;
@@ -41,7 +40,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void init() {
-        instance = this;
         selected_home();
         selected_me();
         homeHome.setOnClickListener(this);

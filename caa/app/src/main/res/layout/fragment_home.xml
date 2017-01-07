@@ -107,7 +107,7 @@
 
                 android:background="#ffffff"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"

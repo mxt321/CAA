@@ -26,6 +26,7 @@ import net.bjyfkj.caa.mvp.presenter.DateDevicePresenter;
 import net.bjyfkj.caa.mvp.view.IDateDeviceView;
 import net.bjyfkj.caa.util.JPushUtil;
 import net.bjyfkj.caa.util.SharedPreferencesUtils;
+import net.bjyfkj.caa.util.VProgressDialog;
 
 import org.xutils.x;
 
@@ -59,6 +60,8 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
     private List<CheckDeviceEntity> checklist = new ArrayList<>();
     private int deviceCount;
     private AdvertisingEntity advertisingEntity;
+    private VProgressDialog vProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
         Intent intent = getIntent();
         advertisingEntity = (AdvertisingEntity) intent.getSerializableExtra("advertisingEntity");
         dateDevicePresenter = new DateDevicePresenter(this);
+        vProgressDialog = new VProgressDialog(this);
         Drawable drawable = getResources().getDrawable(R.drawable.checkbox_selector);
         drawable.setBounds(0, 0, 32, 32);
         checkBox.setCompoundDrawables(drawable, null, null, null);
@@ -252,12 +256,24 @@ public class DateDeviceActivity extends BaseActivity implements IDateDeviceView 
 
     @Override
     public void submitAdsSuccess() {
-
+        ActivityCollector.finishAll();
+        Intent intent = new Intent(DateDeviceActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void submitAdsError() {
 
+    }
+
+    @Override
+    public void showProgressDlg() {
+        vProgressDialog.showProgressDlg("正在发布");
+    }
+
+    @Override
+    public void dismissProgressDlg() {
+        vProgressDialog.dismissProgressDlg();
     }
 
     /***

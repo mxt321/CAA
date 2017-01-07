@@ -16,6 +16,7 @@ import com.zhy.autolayout.AutoLinearLayout;
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.activity.LoginActivity;
 import net.bjyfkj.caa.UI.activity.PerfectAdvertisingActivity;
+import net.bjyfkj.caa.UI.activity.ReleaseDatailsActivity;
 import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.IndexInfo;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
     Button btnDetail;
     private View view;
     private HomePresenter homePresenter;
+    private String ads_id;
 
     @Nullable
     @Override
@@ -140,13 +142,18 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
         tvGetCount.setText(index.getGet_count());
         tvPlayCount.setText(index.getPlay_count());
         tvUseCount.setText(index.getUse_count());
+        ads_id = index.getAds_id();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_detail:
-
+                if (!ads_id.equals("")) {
+                    Intent intent = new Intent(getActivity(), ReleaseDatailsActivity.class);
+                    intent.putExtra("ads_id", ads_id);
+                    startActivity(intent);
+                }
                 break;
             case R.id.ll_werben:
                 Intent intent = new Intent(getActivity(), PerfectAdvertisingActivity.class);

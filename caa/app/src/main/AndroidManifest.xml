@@ -148,6 +148,7 @@
         <activity android:name=".UI.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -160,10 +161,11 @@
             android:name=".UI.activity.PerfectAdvertisingActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".UI.activity.AdvertisingPreviewActivity" />
-        <activity android:name=".UI.activity.RingChooseActivity">
-
-        </activity>
-        <activity android:name=".UI.activity.DateDeviceActivity"></activity>
+        <activity android:name=".UI.activity.RingChooseActivity" />
+        <activity android:name=".UI.activity.DateDeviceActivity" />
+        <activity android:name=".UI.activity.AdvertisingSuccessActivity" />
+        <activity android:name=".UI.activity.ReleaseDatailsActivity" />
+        <activity android:name=".UI.activity.TVDetailsActitvity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.app.BaseActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.UserInfo;
@@ -118,7 +119,7 @@ public class ValidaActivity extends BaseActivity implements View.OnClickListener
         SharedPreferencesUtils.setParam(x.app(), User.HEADIMG, ui.getHeadimg());
         SharedPreferencesUtils.setParam(x.app(), User.TOKEN, ui.getToken());
         JPushUtil.setAlias(x.app(), ui.getUser_id());
-        LoginActivity.instance.finish();
+        ActivityCollector.finishAll();
         Intent intent = new Intent(ValidaActivity.this, HomeActivity.class);
         startActivity(intent);
         this.finish();
