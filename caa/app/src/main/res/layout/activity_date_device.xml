@@ -74,6 +74,7 @@
                 android:layout_height="280px"
                 android:layout_marginTop="16px"
                 android:horizontalSpacing="40px"
+                android:listSelector="@color/transparent"
                 android:numColumns="2"
                 android:verticalSpacing="16px" />
         </LinearLayout>

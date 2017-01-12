@@ -15,6 +15,7 @@ import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.adapter.ReleaseDatailsAdapter;
 import net.bjyfkj.caa.app.ActivityCollector;
 import net.bjyfkj.caa.app.BaseActivity;
+import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.entity.AdsEntity;
 import net.bjyfkj.caa.mvp.presenter.ReleaseDatailsPresenter;
 import net.bjyfkj.caa.mvp.view.IReleaseDatailsView;
@@ -86,8 +87,10 @@ public class ReleaseDatailsActivity extends BaseActivity implements IReleaseData
         lvReleaseDetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String deivice_id = mData.get(i).getDevice_id();
-
+                String device_id = mData.get(i).getDevice_id();
+                intent = new Intent(ReleaseDatailsActivity.this, TVDetailsActitvity.class);
+                intent.putExtra("device_id", device_id);
+                startActivity(intent);
             }
         });
     }
@@ -118,7 +121,7 @@ public class ReleaseDatailsActivity extends BaseActivity implements IReleaseData
 
     @Override
     public String getToken() {
-        return SharedPreferencesUtils.getParam(x.app(), "token", "").toString();
+        return SharedPreferencesUtils.getParam(x.app(), User.TOKEN, "").toString();
     }
 
     @Override

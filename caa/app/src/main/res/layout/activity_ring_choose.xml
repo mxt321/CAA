@@ -69,13 +69,13 @@
 
                 <Button
                     android:id="@+id/btn_select_city"
+                    android:layout_width="220px"
+                    android:layout_height="74px"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/ring_choose_selector_item"
                     android:text="北京"
                     android:textColor="@color/colorGree"
-                    android:textSize="14sp"
-                    android:layout_height="74px"
-                    android:layout_width="220px" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -100,6 +100,7 @@
                     android:layout_marginTop="8dp"
                     android:columnWidth="8dp"
                     android:horizontalSpacing="5dp"
+                    android:listSelector="@color/transparent"
                     android:numColumns="3" />
             </LinearLayout>
             <!--热门城区 -->
@@ -124,6 +125,7 @@
                     android:layout_marginTop="8dp"
                     android:columnWidth="8dp"
                     android:horizontalSpacing="5dp"
+                    android:listSelector="@color/transparent"
                     android:numColumns="3" />
             </LinearLayout>
             <!--商圈 -->
@@ -153,6 +155,7 @@
                         android:layout_marginTop="8dp"
                         android:columnWidth="8dp"
                         android:horizontalSpacing="5dp"
+                        android:listSelector="@color/transparent"
                         android:numColumns="3" />
                 </LinearLayout>
             </LinearLayout>

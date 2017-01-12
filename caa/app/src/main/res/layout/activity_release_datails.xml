@@ -73,7 +73,7 @@
                     android:id="@+id/releasing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10屏"
+                    android:text="0屏"
                     android:textSize="16sp"
                     android:textColor="#333333" />
 

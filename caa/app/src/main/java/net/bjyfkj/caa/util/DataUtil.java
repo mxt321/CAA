@@ -10,27 +10,7 @@ import java.util.Date;
 /**一些数据转换的操作*/
 public class DataUtil {
 	
-	
-	/***
-	 * 二维码提权用户id
-	 * @param code
-	 * @return
-	 */
-	public static int codeToId(String code){
-		try {
-			if(code.indexOf("user") != -1){
-				return Integer.parseInt(code.substring(code.lastIndexOf("/")+1));
-				
-			}else{
-				return 0;
-			}
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	
+
 	/**
 	 * 将dp转换为px
 	 */
