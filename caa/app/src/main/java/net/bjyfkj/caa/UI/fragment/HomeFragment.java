@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zhy.autolayout.AutoLinearLayout;
+import com.zhy.autolayout.AutoRelativeLayout;
 
 import net.bjyfkj.caa.R;
+import net.bjyfkj.caa.UI.activity.GetUserActivity;
 import net.bjyfkj.caa.UI.activity.LoginActivity;
 import net.bjyfkj.caa.UI.activity.PerfectAdvertisingActivity;
 import net.bjyfkj.caa.UI.activity.ReleaseDatailsActivity;
@@ -53,9 +56,14 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
     AutoLinearLayout llHomeRing;
     @InjectView(R.id.btn_detail)
     Button btnDetail;
+    @InjectView(R.id.noget)
+    AutoRelativeLayout noget;
+    @InjectView(R.id.get_use)
+    AutoRelativeLayout getUse;
     private View view;
     private HomePresenter homePresenter;
     private String ads_id;
+    private Intent intent;
 
     @Nullable
     @Override
@@ -78,10 +86,23 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
         initData();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (intent != null) {
+            intent = null;
+        }
+        if (homePresenter != null) {
+            homePresenter = null;
+        }
+    }
+
     public void init() {
         homePresenter = new HomePresenter(this);
         btnDetail.setOnClickListener(this);
         llWerben.setOnClickListener(this);
+        noget.setOnClickListener(this);
+        getUse.setOnClickListener(this);
     }
 
     public void initData() {
@@ -95,7 +116,7 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
 
     @Override
     public void indexError() {
-
+        Toast.makeText(x.app(), "获取失败", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,7 +126,6 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
         ActivityCollector.finishAll();
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
-
     }
 
     @Override
@@ -138,6 +158,7 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
     @Override
     public void showll_home_ring(IndexInfo.DataBean index) {
         llHomeRing.setVisibility(View.VISIBLE);
+        btnDetail.setClickable(true);
         tvDiviceCount.setText(index.getDevice_count());
         tvGetCount.setText(index.getGet_count());
         tvPlayCount.setText(index.getPlay_count());
@@ -150,13 +171,25 @@ public class HomeFragment extends Fragment implements IHomeView, View.OnClickLis
         switch (view.getId()) {
             case R.id.btn_detail:
                 if (!ads_id.equals("")) {
-                    Intent intent = new Intent(getActivity(), ReleaseDatailsActivity.class);
+                    intent = new Intent(getActivity(), ReleaseDatailsActivity.class);
                     intent.putExtra("ads_id", ads_id);
                     startActivity(intent);
                 }
                 break;
             case R.id.ll_werben:
-                Intent intent = new Intent(getActivity(), PerfectAdvertisingActivity.class);
+                intent = new Intent(getActivity(), PerfectAdvertisingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.noget:
+                intent = new Intent(getActivity(), GetUserActivity.class);
+                intent.putExtra("ads_id", ads_id);
+                intent.putExtra("status", "0");
+                startActivity(intent);
+                break;
+            case R.id.get_use:
+                intent = new Intent(getActivity(), GetUserActivity.class);
+                intent.putExtra("ads_id", ads_id);
+                intent.putExtra("status", "1");
                 startActivity(intent);
                 break;
         }

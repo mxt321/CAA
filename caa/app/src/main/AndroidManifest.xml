@@ -165,7 +165,9 @@
         <activity android:name=".UI.activity.DateDeviceActivity" />
         <activity android:name=".UI.activity.AdvertisingSuccessActivity" />
         <activity android:name=".UI.activity.ReleaseDatailsActivity" />
-        <activity android:name=".UI.activity.TVDetailsActitvity"></activity>
+        <activity android:name=".UI.activity.TVDetailsActitvity" />
+        <activity android:name=".UI.activity.GetUserActivity" />
+        <activity android:name=".UI.activity.MyReleaseActivity"></activity>
     </application>
 
 </manifest>

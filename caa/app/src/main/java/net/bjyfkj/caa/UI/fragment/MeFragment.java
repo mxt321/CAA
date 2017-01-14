@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 
 import net.bjyfkj.caa.R;
 import net.bjyfkj.caa.UI.activity.LoginActivity;
+import net.bjyfkj.caa.UI.activity.MyReleaseActivity;
 import net.bjyfkj.caa.UI.activity.UpNickNameActivity;
 import net.bjyfkj.caa.constant.User;
 import net.bjyfkj.caa.mvp.presenter.MePresenter;
@@ -69,6 +70,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
     private static final int REQUESTCODE_TAKE = 1; // 相机拍照标记
     private static final int REQUESTCODE_CUTTING = 2;
     private File file;
+    private Intent intent;
 
     @Nullable
     @Override
@@ -86,6 +88,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
         userlogout.setOnClickListener(this);
         tvNickname.setOnClickListener(this);
         ivMe.setOnClickListener(this);
+        btnMePublish.setOnClickListener(this);
         menuWindow = new SelectPicPopupWindow(getContext(), itemsOnClick);
     }
 
@@ -99,6 +102,24 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+        if (intent != null) {
+            intent = null;
+        }
+        if (file != null) {
+            file = null;
+        }
+        if (v != null) {
+            v = null;
+        }
+        if (mePresenter != null) {
+            mePresenter = null;
+        }
+        if (vProgressDialog != null) {
+            vProgressDialog = null;
+        }
+        if (menuWindow != null) {
+            menuWindow = null;
+        }
     }
 
 
@@ -136,8 +157,12 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
                         Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
             case R.id.tv_nickname:
-                Intent intent = new Intent(getActivity(), UpNickNameActivity.class);
+                intent = new Intent(getActivity(), UpNickNameActivity.class);
                 intent.putExtra("nickname", tvNickname.getText().toString());
+                startActivity(intent);
+                break;
+            case R.id.btn_me_publish:
+                intent = new Intent(getActivity(), MyReleaseActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -182,9 +207,6 @@ public class MeFragment extends Fragment implements View.OnClickListener, IMeVie
 
     @Override
     public void upHeadSuccess(String urlPath) {
-        if (file.exists()) {
-            file.delete();
-        }
         Toast.makeText(x.app(), "上传成功", Toast.LENGTH_SHORT).show();
         SharedPreferencesUtils.setParam(x.app(), User.HEADIMG, urlPath);
         Glide.with(this).load(SharedPreferencesUtils.getParam(x.app(), User.HEADIMG, "")).bitmapTransform(new CropCircleTransformation(x.app())).into(ivMe);

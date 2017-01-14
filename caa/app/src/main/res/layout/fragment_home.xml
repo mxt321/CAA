@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -21,7 +22,7 @@
                 android:id="@+id/imgbtn_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@mipmap/pub_loading_pic" />
+                android:background="@drawable/home" />
 
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -188,15 +189,31 @@
                             android:text="领取人数："
                             android:textSize="30px" />
 
-                        <TextView
-                            android:id="@+id/tv_get_count"
+                        <com.zhy.autolayout.AutoRelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="#f66329"
-                            android:textSize="30px" />
+                            android:id="@+id/noget">
 
+                            <TextView
+                                android:id="@+id/tv_get_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:textColor="#f66329"
+                                android:textSize="30px" />
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="10px"
+                                app:srcCompat="@mipmap/home_public_more" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
 
                     </com.zhy.autolayout.AutoLinearLayout>
 
@@ -215,14 +232,34 @@
                             android:text="使用人数："
                             android:textSize="30px" />
 
-                        <TextView
-                            android:id="@+id/tv_use_count"
+
+                        <com.zhy.autolayout.AutoRelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="#f66329"
-                            android:textSize="30px" />
+                            android:id="@+id/get_use">
+
+                            <TextView
+                                android:id="@+id/tv_use_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:textColor="#f66329"
+                                android:textSize="30px" />
+
+                            <ImageView
+                                android:id="@+id/imageView1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="10px"
+                                app:srcCompat="@mipmap/home_public_more" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+
                     </com.zhy.autolayout.AutoLinearLayout>
 
                 </com.zhy.autolayout.AutoLinearLayout>

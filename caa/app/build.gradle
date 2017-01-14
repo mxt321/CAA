@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion '25.0.1'
     sourceSets {
         main {
             jniLibs.srcDir 'libs'
@@ -29,8 +29,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.1'
     compile 'org.xutils:xutils:3.3.36'
     compile 'com.google.code.gson:gson:2.7'
     compile files('libs/jpush-android-2.2.0.jar')
@@ -38,7 +38,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.zhy:autolayout:1.4.5'
-    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:design:25.0.1'
     //glide加载圆角
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     // If you want to use the GPU Filters

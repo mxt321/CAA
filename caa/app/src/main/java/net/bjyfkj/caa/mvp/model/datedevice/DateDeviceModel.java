@@ -114,7 +114,7 @@ public class DateDeviceModel implements IDateDeviceModel {
         params.addBodyParameter("sign", sign);
         params.setMultipart(true);
         for (int i = 0; i < advertisingEntity.getPoster().size(); i++) {
-            params.addBodyParameter("poster[]" + i, new File(advertisingEntity.getPoster().get(i)));
+            params.addBodyParameter("poster[]", new File(advertisingEntity.getPoster().get(i)));
         }
         params.addBodyParameter("token", token);
         params.addBodyParameter("title", advertisingEntity.getTitle());
@@ -125,7 +125,7 @@ public class DateDeviceModel implements IDateDeviceModel {
         params.addBodyParameter("item_img", new File(advertisingEntity.getItem_img()));
         params.addBodyParameter("description", advertisingEntity.getDescription());
         params.addBodyParameter("shop_name", advertisingEntity.getShop_name());
-        params.addBodyParameter("shop_address", advertisingEntity.getShop_address());
+        params.addBodyParameter("shop_address", advertisingEntity.getShop_address());//18701243410
         params.addBodyParameter("start_time", advertisingEntity.getStart_time());
         params.addBodyParameter("end_time", advertisingEntity.getEnd_time());
         params.addBodyParameter("promotion_content", advertisingEntity.getPromotion_content());

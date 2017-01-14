@@ -6,4 +6,5 @@
     <color name="writ">#ffffff</color>
     <color name="colorOrange">#f66329</color>
     <color name="colorGree">#666666</color>
+    <color name="colorBackground">#c000</color>
 </resources>
